@@ -1,0 +1,42 @@
+{
+  "info": {
+    "_postman_id": "a9b8d47c-8c72-4b98-a59b-40b15ab20a80",
+    "name": "New Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "lista centros",
+      "id": "b593452d-0d29-44c2-aef4-d74c60d848f8",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "encontrar Centro iD",
+      "id": "8194943d-4580-4e28-bfde-216deefbf7af",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/centros/CD001",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "centros",
+            "CD001"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

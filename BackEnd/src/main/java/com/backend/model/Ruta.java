@@ -1,12 +1,12 @@
 package com.backend.model;
 
-public class Rutas {
+public class Ruta {
     private String ide;
     String origen;
     String destino;
     int distancia;
 
-    public Rutas(String ide, String origen, String destino, String distancia) {
+    public Ruta(String ide, String origen, String destino, String distancia) {
         this.ide = ide;
         this.origen = origen;
         this.destino = destino;

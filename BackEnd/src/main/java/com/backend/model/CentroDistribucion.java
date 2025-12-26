@@ -3,8 +3,8 @@ package com.backend.model;
 public class CentroDistribucion {
     private String idcentro;
     private String nombre;
-    String ciudad;
-    int capacidad_total;
+    private String ciudad;
+    private int capacidad_total;
     int capacidad_libre;
 
     public CentroDistribucion(String idcentro, String nombre, String ciudad, String capacidad_total) {
@@ -24,5 +24,11 @@ public class CentroDistribucion {
         return nombre;
     }
 
+    public String getCiudad() {
+        return ciudad;
+    }
 
+    public int getCapacidad_total() {
+        return capacidad_total;
+    }
 }
