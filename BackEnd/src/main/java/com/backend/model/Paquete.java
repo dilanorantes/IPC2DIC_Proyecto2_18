@@ -20,5 +20,19 @@ public class Paquete {
     public String getIde() {
         return ide;
     }
-
+    public String getCliente() {
+        return cliente;
+    }
+    public int getPeso() {
+        return peso;
+    }
+    public String getDestino() {
+        return destino;
+    }
+    public String getEstado() {
+        return estado;
+    }
+    public String getCentro_actual() {
+        return centro_actual;
+    }
 }

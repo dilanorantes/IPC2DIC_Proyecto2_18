@@ -1,5 +1,6 @@
 package com.backend.controller;
 import com.backend.model.CentroDistribucion;
+import com.backend.model.Paquete;
 import com.backend.service.CentroService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,6 +32,13 @@ public class CentroController {
         return centroService.obtenerCentroPorId(id);
     }
 
+    //aqui va el get de la lista de paquetes
+
+    //http://localhost:8080/centros/id/paquetes
+    @GetMapping("/{id}/paquetes")
+    public ArrayList<Paquete> obtenerPaquetesDelCentro(@PathVariable String id) {
+        return centroService.listaPaquetesDelCentro(id);
+    }
 
 
 

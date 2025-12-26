@@ -1,5 +1,7 @@
 package com.backend.service;
 import com.backend.model.CentroDistribucion;
+import com.backend.model.Paquete;
+
 import java.util.ArrayList;
 
 //los service que no son Impl
@@ -10,7 +12,10 @@ public interface CentroService {
 
     //metodos para encontrar la información especifica de un centro por su id
     CentroDistribucion obtenerCentroPorId(String id);
-    CentroDistribucion listaPaquetesDelCentro(String id);
+
+
+    ArrayList<Paquete> listaPaquetesDelCentro(String id);
+
     CentroDistribucion listaMensajerosDelCentro(String id);
 }
 

@@ -4,5 +4,5 @@ import com.backend.model.Paquete;
 import java.util.ArrayList;
 
 public interface PaqueteService {
-    ArrayList<Paquete> obtenerCentros();
+    ArrayList<Paquete> obtenerPaquetes();
 }

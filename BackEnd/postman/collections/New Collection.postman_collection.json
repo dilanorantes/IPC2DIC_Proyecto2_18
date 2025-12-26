@@ -37,6 +37,18 @@
         }
       },
       "response": []
+    },
+    {
+      "name": "listaPaquetes_en_Centro",
+      "id": "040d2c2d-724a-4a90-b748-328a47ba2889",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
     }
   ]
 }

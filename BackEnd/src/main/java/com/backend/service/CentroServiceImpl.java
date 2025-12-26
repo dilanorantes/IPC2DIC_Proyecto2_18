@@ -3,20 +3,24 @@ package com.backend.service;
 //importo mi modelo de clase centrodistribucion
 import com.backend.model.CentroDistribucion;
 
+import com.backend.model.Paquete;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-
+import com.backend.service.PaqueteService;
 
 @Service
 
 public class CentroServiceImpl implements  CentroService {
     //creo lista_centros
     private final ArrayList<CentroDistribucion> lista_centros = new ArrayList<>();
-
+    private PaqueteService paqueteService = null;
 
     //este es el constructor de centroservice
     public CentroServiceImpl() {
+        this.paqueteService = paqueteService;
+
+
         //aqui se crean todos los centros y se agregan a la lista
         lista_centros.add(new CentroDistribucion("CD001", "centro1","ciudad1", "33"));
         lista_centros.add(new CentroDistribucion("CD002", "centro2","ciudad2", "40"));
@@ -44,27 +48,33 @@ public class CentroServiceImpl implements  CentroService {
     //aqui hay que llamar la lista de paquetes y ver cuales tienen centro actual == id centro
     //crear una lista y regresarla
     @Override
-    public CentroDistribucion listaPaquetesDelCentro(String id_centro) {
-        for (CentroDistribucion centro : lista_centros) {
-            if (centro.getIdcentro().equals(id_centro)) {
-                return centro;
+    public ArrayList<Paquete> listaPaquetesDelCentro(String id_centro) {
+        ArrayList<Paquete> listaPaquetes = paqueteService.obtenerPaquetes();
+
+        //lista temporal de paquetes para enviar se reinicia cada vez
+        ArrayList<Paquete> lista_paquetesEnCentro = new ArrayList<>();
+
+        for (Paquete paquete : listaPaquetes) {
+            if (paquete.getDestino().equals(id_centro)) {
+                lista_paquetesEnCentro.add(paquete);
             }
         }
-        return null;
+
+        return lista_paquetesEnCentro;
     }
 
 
     //aqui hay que llamar la lista de mensajeros y ver cuales tienen centro_asig == id centro
     //crear una lista y regresarla
+
     @Override
-    public CentroDistribucion listaMensajerosDelCentro (String id_centro) {
-        for (CentroDistribucion centro : lista_centros) {
-            if (centro.getIdcentro().equals(id_centro)) {
-                return centro;
-            }
-        }
+    public CentroDistribucion listaMensajerosDelCentro(String id) {
         return null;
     }
-
-
 }
+
+
+
+
+
+

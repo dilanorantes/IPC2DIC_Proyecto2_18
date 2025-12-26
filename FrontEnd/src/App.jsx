@@ -1,29 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
 
-function App() {
-  //se crea la funcion de abrir un administrador de archivos
-  const abrirExplorador = () => {
-    document.getElementById("archivos").click();
-  };
+import {BrowserRouter, Routes, Route} from "react-router-dom"
 
-  return (
-    <>
-      <div>
-        <button onClick={abrirExplorador}>
-          Cargar archivo XML
-          </button> 
+import Home from "./views/Home"
+import Centro from "./views/Centro"
+import Ruta from "./views/Ruta"
+import Mensajero from "./views/Mensajero"
+import Paquete from "./views/Paquete"
+import Solicitud from "./views/Paquete"
 
-        <input 
-        id = "archivos"
-        type="file"
-        hidden/>
-
-      </div>
-    </>
-  );
+function App (){
+    return(
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element = {<Home />}/> 
+          <Route path="/Centro" element = {<Centro />}/> 
+          <Route path="/Ruta" element = {<Ruta />}/> 
+          <Route path="/Mensajero" element = {<Mensajero />}/> 
+          <Route path="/Paquete" element = {<Paquete />}/> 
+          <Route path="/Solicitud" element = {<Solicitud />}/> 
+        </Routes>
+      </BrowserRouter>
+    )
 }
+export default App  
 
-export default App;
