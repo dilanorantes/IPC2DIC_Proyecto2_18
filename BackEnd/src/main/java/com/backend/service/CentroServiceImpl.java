@@ -1,6 +1,7 @@
 package com.backend.service;
 
 //importo mi modelo de clase centrodistribucion
+import com.backend.lista.Listas;
 import com.backend.model.CentroDistribucion;
 
 import com.backend.model.Paquete;
@@ -14,11 +15,11 @@ import com.backend.service.PaqueteService;
 public class CentroServiceImpl implements  CentroService {
     //creo lista_centros
     private final ArrayList<CentroDistribucion> lista_centros = new ArrayList<>();
-    private PaqueteService paqueteService = null;
+    //PaqueteService paqueteService;
 
     //este es el constructor de centroservice
     public CentroServiceImpl() {
-        this.paqueteService = paqueteService;
+        //this.paqueteService = paqueteService;
 
 
         //aqui se crean todos los centros y se agregan a la lista
@@ -49,13 +50,13 @@ public class CentroServiceImpl implements  CentroService {
     //crear una lista y regresarla
     @Override
     public ArrayList<Paquete> listaPaquetesDelCentro(String id_centro) {
-        ArrayList<Paquete> listaPaquetes = paqueteService.obtenerPaquetes();
+        //ArrayList<Paquete> listaPaquetes = paqueteService.obtenerPaquetes();
 
         //lista temporal de paquetes para enviar se reinicia cada vez
         ArrayList<Paquete> lista_paquetesEnCentro = new ArrayList<>();
 
-        for (Paquete paquete : listaPaquetes) {
-            if (paquete.getDestino().equals(id_centro)) {
+        for (Paquete paquete : Listas.listaPaquetes) {
+            if (paquete.getCentro_actual().equals(id_centro)) {
                 lista_paquetesEnCentro.add(paquete);
             }
         }
