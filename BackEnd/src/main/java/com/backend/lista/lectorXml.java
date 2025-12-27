@@ -10,13 +10,13 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.InputStream;
 
 public class lectorXml {
-    public void leerXml(InputStream inputStream) throws Exception {
-        // Creo un lector de xml
+    public void leerXml(InputStream archivoxml) throws Exception {
+        //a partir del archivo xml que se le pasa como input stream lo va a intentar leer correctamente
 
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.parse(inputStream);
+            Document document = builder.parse(archivoxml);
 
             // se obtiene raiz y se guarda en raiz
 
@@ -90,7 +90,7 @@ public class lectorXml {
                 System.out.println("No hay etiqueta mensajeros en el archivo xml");
             }
 
-            // Leer paquetes
+            // leemos las etiquetas de paquetes que estan en la etiqueta de configuracion
             NodeList paquetesList = configuracion.getElementsByTagName("paquetes");
             if (paquetesList.getLength() > 0) {
                 Element paquetes = (Element) paquetesList.item(0);
@@ -113,7 +113,7 @@ public class lectorXml {
                 System.out.println("No hay etiqueta paquetes en el archivo xml");
             }
 
-            // Leer solicitudes
+            // leer las solicitudes, hay que comprobar que se pueda crear cada objeto aqui dentro
             NodeList solicitudesList = configuracion.getElementsByTagName("solicitudes");
             if (solicitudesList.getLength() > 0) {
                 Element solicitudes = (Element) solicitudesList.item(0);
