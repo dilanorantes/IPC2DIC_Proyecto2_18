@@ -1,20 +1,21 @@
 package com.backend.service;
 
-//importo mi modelo de clase centrodistribucion
+
 import com.backend.lista.Listas;
+//importo mi modelo de clase centrodistribucion
 import com.backend.model.CentroDistribucion;
 
 import com.backend.model.Paquete;
 import org.springframework.stereotype.Service;
-
+import com.backend.lista.Listas;
 import java.util.ArrayList;
-import com.backend.service.PaqueteService;
+// import com.backend.service.PaqueteService;
 
 @Service
 
 public class CentroServiceImpl implements  CentroService {
     //creo lista_centros
-    private final ArrayList<CentroDistribucion> lista_centros = new ArrayList<>();
+    //private final ArrayList<CentroDistribucion> lista_centros = new ArrayList<>();
     //PaqueteService paqueteService;
 
     //este es el constructor de centroservice
@@ -23,21 +24,21 @@ public class CentroServiceImpl implements  CentroService {
 
 
         //aqui se crean todos los centros y se agregan a la lista
-        lista_centros.add(new CentroDistribucion("CD001", "centro1","ciudad1", "33"));
-        lista_centros.add(new CentroDistribucion("CD002", "centro2","ciudad2", "40"));
+        Listas.listaCentros.add(new CentroDistribucion("CD001", "centro1","ciudad1", "33"));
+        Listas.listaCentros.add(new CentroDistribucion("CD002", "centro2","ciudad2", "40"));
 
     }
     //metodo para devolver la lista de los centros
     @Override
     public ArrayList<CentroDistribucion> obtenerCentros() {
-        return lista_centros;
+        return Listas.listaCentros;
     }
 
     @Override
 
     //metodo para encontrar un centro por su id
     public CentroDistribucion obtenerCentroPorId(String id) {
-        for (CentroDistribucion centro : lista_centros) {
+        for (CentroDistribucion centro : Listas.listaCentros) {
             if (centro.getIdcentro().equals(id)) {
                 return centro;
             }

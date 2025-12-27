@@ -1,13 +1,18 @@
 package com.backend.lista;
 
+import com.backend.model.CentroDistribucion;
+import com.backend.service.CentroServiceImpl;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.InputStream;
+
+import com.backend.lista.Listas;
+import com.backend.service.CentroService;
+import com.backend.model.CentroDistribucion;
 
 public class lectorXml {
     public void leerXml(InputStream archivoxml) throws Exception {
@@ -31,15 +36,37 @@ public class lectorXml {
             NodeList centrosList = configuracion.getElementsByTagName("centros");
             if (centrosList.getLength() > 0) {
                 Element centros = (Element) centrosList.item(0);
-                NodeList centro_actual = centros.getElementsByTagName("centro");
-                if (centro_actual.getLength() > 0) {
-                    for (int i = 0; i < centro_actual.getLength(); i++) {
-                        Element centro = (Element) centro_actual.item(i);
+                NodeList centros_temp = centros.getElementsByTagName("centro");
+                if (centros_temp.getLength() > 0) {
+
+                    //creo una instancia d centro service para utilizar sus metodos
+                    CentroService centroService = new CentroServiceImpl();
+
+                    for (int i = 0; i < centros_temp.getLength(); i++) {
+                        Element centro = (Element) centros_temp.item(i);
+
+                        String idCentro = centro.getAttribute("id");
+                        String nombreCentro = centro.getElementsByTagName("nombre").item(0).getTextContent();
+                        String ciudadCentro = centro.getElementsByTagName("ciudad").item(0).getTextContent();
+                        String capCentro = centro.getElementsByTagName("capacidad").item(0).getTextContent();
+
                         System.out.println("Centro:");
-                        System.out.println("  ID: " + centro.getAttribute("id"));
-                        System.out.println("  Nombre: " + centro.getElementsByTagName("nombre").item(0).getTextContent());
-                        System.out.println("  Ciudad: " + centro.getElementsByTagName("ciudad").item(0).getTextContent());
-                        System.out.println("  Capacidad: " + centro.getElementsByTagName("capacidad").item(0).getTextContent());
+                        System.out.println(" ID: " + idCentro);
+                        System.out.println(" Nombre: " + nombreCentro);
+                        System.out.println(" Ciudad: " + ciudadCentro);
+                        System.out.println(" Capacidad: " + capCentro+"\n");
+
+                        //SI no existe centro en la listacentros se crea el objeto y lo guardo
+                        if (centroService.obtenerCentroPorId(idCentro) == null && Integer.parseInt(capCentro) > 0 ) {
+                            System.out.println(" ID: " + idCentro + "agregado correctamente\n");
+
+                            Listas.listaCentros.add(new CentroDistribucion(idCentro,nombreCentro,ciudadCentro,capCentro));
+
+                        } else {
+                            //si si existe se menciona
+                            System.out.println(" ID: " + idCentro + "ya existia\n");
+                        }
+
                     }
                 } else {
                     System.out.println("no existe 1 centro en la etiqueta centros en el archivo xml");
@@ -138,6 +165,16 @@ public class lectorXml {
         }
 
     }
+
+//    //metodo para encontrar un centro por su id
+//    public CentroDistribucion obtenerCentroPorId(String id) {
+//        for (CentroDistribucion centro : Listas.listaCentros) {
+//            if (centro.getIdcentro().equals(id)) {
+//                return centro;
+//            }
+//        }
+//        return null;
+//    }
 
 
 }

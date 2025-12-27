@@ -14,7 +14,7 @@ import java.io.InputStream;
 @RequestMapping("/api")
 public class XmlController {
     //http://localhost:8080/api/subirxml
-    @PostMapping("/subirxml")
+    @PostMapping("/importar")
     public ResponseEntity<String> uploadXML(@RequestParam("file") MultipartFile file) {
         try {
 
