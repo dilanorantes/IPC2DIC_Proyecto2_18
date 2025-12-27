@@ -10,9 +10,8 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.InputStream;
 
-import com.backend.lista.Listas;
 import com.backend.service.CentroService;
-import com.backend.model.CentroDistribucion;
+import org.xml.sax.SAXParseException;
 
 public class lectorXml {
     public void leerXml(InputStream archivoxml) throws Exception {
@@ -21,13 +20,19 @@ public class lectorXml {
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.parse(archivoxml);
+            Document documento = builder.parse(archivoxml);
 
             // se obtiene raiz y se guarda en raiz
 
-            Element raiz = document.getDocumentElement();
+            Element raiz = documento.getDocumentElement();
 
+            //obtengo la etiqueta configuracion y sus etiquetas hijas
             Element configuracion = (Element) raiz.getElementsByTagName("configuracion").item(0);
+
+
+            //creo una instancia d centro service para utilizar sus metodos
+            CentroService centroService = new CentroServiceImpl();
+
 
             // leo las etiquetas centro
             //si no hay me salgo para que no haya error
@@ -39,8 +44,7 @@ public class lectorXml {
                 NodeList centros_temp = centros.getElementsByTagName("centro");
                 if (centros_temp.getLength() > 0) {
 
-                    //creo una instancia d centro service para utilizar sus metodos
-                    CentroService centroService = new CentroServiceImpl();
+
 
                     for (int i = 0; i < centros_temp.getLength(); i++) {
                         Element centro = (Element) centros_temp.item(i);
@@ -160,21 +164,16 @@ public class lectorXml {
             } else {
                 System.out.println("No hay etiqueta solicitudes en el archivo xml");
             }
+        } catch (SAXParseException e) {
+            System.out.println("error al terminar etiquetas: " + e.getMessage());
+            //  error al ver que no hay etiqueta terminada igual
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("error inesperado: " + e.getMessage());
+            // 
         }
 
     }
 
-//    //metodo para encontrar un centro por su id
-//    public CentroDistribucion obtenerCentroPorId(String id) {
-//        for (CentroDistribucion centro : Listas.listaCentros) {
-//            if (centro.getIdcentro().equals(id)) {
-//                return centro;
-//            }
-//        }
-//        return null;
-//    }
 
 
 }

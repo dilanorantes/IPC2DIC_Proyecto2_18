@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 function Home   () {
   //se crea la funcion de abrir un administrador de archivos
   const abrirExplorador = () => {
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.accept = '.xml';
-    input.onchange = async (event) => {
+    const entrada = document.createElement('input');
+    entrada.type = 'file';
+    entrada.accept = '.xml';
+    entrada.onchange = async (event) => {
       const file = event.target.files[0];
       if (file) {
         try {
@@ -13,7 +13,7 @@ function Home   () {
           archivo.append("file", file);
           const response = await fetch('http://localhost:8080/api/importar', {
             method: 'POST',
-            body: formData,
+            body: archivo,
           });
           //dependiendo de la respuesta del endpoint toma una decision
           if (response.ok) {
@@ -28,7 +28,7 @@ function Home   () {
         alert("solo selecciona archivos .xml");
       }
     };
-    input.click();
+    entrada.click();
   };
 
   return (
