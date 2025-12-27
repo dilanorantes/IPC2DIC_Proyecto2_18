@@ -7,13 +7,10 @@ import java.util.ArrayList;
 
 @Service
 public class PaqueteServiceImpl implements PaqueteService{
-    final private ArrayList<Paquete> lista_paquetes = new ArrayList<>();
+    //final private ArrayList<Paquete> lista_paquetes = new ArrayList<>();
 
     public PaqueteServiceImpl() {
         //aqui se crean todos los paquetes y se agregan a la lista
-        Listas.listaPaquetes.add(new Paquete("PA001", "cLIENTE1","13", "CD002", "CD001"));
-        Listas.listaPaquetes.add(new Paquete("PA002", "cliente2","16", "CD003", "CD002"));
-        Listas.listaPaquetes.add(new Paquete("PA003", "cliente3","16", "CD002", "CD001"));
     }
 
 

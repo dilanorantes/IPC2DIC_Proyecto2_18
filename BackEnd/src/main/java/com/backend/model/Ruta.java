@@ -17,4 +17,14 @@ public class Ruta {
         return ide;
     }
 
+    public String getOrigen() {
+        return origen;
+    }
+    public String getDestino() {
+        return destino;
+    }
+
+    public int getDistancia() {
+        return distancia;
+    }
 }

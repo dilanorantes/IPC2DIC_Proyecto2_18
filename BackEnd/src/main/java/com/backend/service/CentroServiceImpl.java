@@ -24,8 +24,6 @@ public class CentroServiceImpl implements  CentroService {
 
 
         //aqui se crean todos los centros y se agregan a la lista
-        Listas.listaCentros.add(new CentroDistribucion("CD001", "centro1","ciudad1", "33"));
-        Listas.listaCentros.add(new CentroDistribucion("CD002", "centro2","ciudad2", "40"));
 
     }
     //metodo para devolver la lista de los centros

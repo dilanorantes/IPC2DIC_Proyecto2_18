@@ -4,13 +4,16 @@ function Home   () {
   const abrirExplorador = () => {
     const entrada = document.createElement('input');
     entrada.type = 'file';
+    //solo aceptamos archivo xml, cuando se abre la ventana para elegir pide .xml
     entrada.accept = '.xml';
+    
     entrada.onchange = async (event) => {
       const file = event.target.files[0];
       if (file) {
         try {
           const archivo = new FormData();
           archivo.append("file", file);
+          //hago el post al backend
           const response = await fetch('http://localhost:8080/api/importar', {
             method: 'POST',
             body: archivo,

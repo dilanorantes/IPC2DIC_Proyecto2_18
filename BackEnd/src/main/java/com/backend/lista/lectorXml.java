@@ -1,7 +1,8 @@
 package com.backend.lista;
 
 import com.backend.model.CentroDistribucion;
-import com.backend.service.CentroServiceImpl;
+import com.backend.model.Ruta;
+import com.backend.service.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -9,8 +10,8 @@ import org.w3c.dom.NodeList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.InputStream;
+import java.util.IllegalFormatCodePointException;
 
-import com.backend.service.CentroService;
 import org.xml.sax.SAXParseException;
 
 public class lectorXml {
@@ -32,7 +33,7 @@ public class lectorXml {
 
             //creo una instancia d centro service para utilizar sus metodos
             CentroService centroService = new CentroServiceImpl();
-
+            RutaService rutaService = new RutaServiceImpl();
 
             // leo las etiquetas centro
             //si no hay me salgo para que no haya error
@@ -67,10 +68,13 @@ public class lectorXml {
                             Listas.listaCentros.add(new CentroDistribucion(idCentro,nombreCentro,ciudadCentro,capCentro));
 
                         } else {
-                            //si si existe se menciona
-                            System.out.println(" ID: " + idCentro + "ya existia\n");
+                            if (Integer.parseInt(capCentro) <= 0){
+                                System.out.println(" ID: " + idCentro + "tiene capacidad menor a 1\n");
+                            }else {
+                                //si si existe se menciona
+                                System.out.println(" ID: " + idCentro + "ya existia\n");
+                            }
                         }
-
                     }
                 } else {
                     System.out.println("no existe 1 centro en la etiqueta centros en el archivo xml");
@@ -78,6 +82,7 @@ public class lectorXml {
             } else {
                 System.out.println("no hay etiqueta centros en el archivo xml");
             }
+
 
             // leer las etiquetas rutas
             NodeList rutasList = configuracion.getElementsByTagName("rutas");
@@ -87,11 +92,22 @@ public class lectorXml {
                 if (ruta_actual.getLength() > 0) {
                     for (int i = 0; i < ruta_actual.getLength(); i++) {
                         Element ruta = (Element) ruta_actual.item(i);
+
+                        //guardo los atributos de las rutas en variables
+                        String idRuta = ruta.getAttribute("id");
+                        String origenRuta = ruta.getAttribute("origen");
+                        String destinoRuta = ruta.getAttribute("destino");
+                        String distanciaRuta = ruta.getAttribute("distancia");
+
                         System.out.println("Ruta:");
-                        System.out.println("  ID: " + ruta.getAttribute("id"));
-                        System.out.println("  Origen: " + ruta.getAttribute("origen"));
-                        System.out.println("  Destino: " + ruta.getAttribute("destino"));
-                        System.out.println("  Distancia: " + ruta.getAttribute("distancia"));
+                        System.out.println(" ID: " + idRuta);
+                        System.out.println(" Origen: " + origenRuta);
+                        System.out.println(" Destino: " + destinoRuta);
+                        System.out.println(" Distancia: " + distanciaRuta);
+
+                        Ruta rutaactual= new Ruta(idRuta,origenRuta,destinoRuta,distanciaRuta);
+                        //SI no existe rutaen la listarutas se crea el objeto y lo guardo\
+
                     }
                 } else {
                     System.out.println("No hay rutas en el archivo xml");
