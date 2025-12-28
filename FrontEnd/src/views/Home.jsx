@@ -36,7 +36,7 @@ function Home   () {
 
   return (
       <div>
-        <h1>Inicio</h1>
+        <h1>Cargar Archivo</h1>
 
         <button onClick={abrirExplorador}>
           Cargar archivo XML
@@ -47,25 +47,6 @@ function Home   () {
         type="file"
         accept=".xml"
         hidden/>
-        
-        <hr />
-        
-        {/*Botones de navegacion */}
-        <button>
-            <Link to = "/Centro">Gestion de centros</Link>
-        </button>
-        <button>
-            <Link to = "/Ruta">Gestion de rutas</Link>
-        </button>
-        <button>
-            <Link to = "/Mensajero">Gestion de mensajeros</Link>
-        </button>
-        <button>
-            <Link to = "/Paquete">Gestion de paquetes</Link>
-        </button>
-        <button>
-            <Link to = "/Solicitud">Gestion de solicitudes</Link>
-        </button>
 
       </div>
   );    
