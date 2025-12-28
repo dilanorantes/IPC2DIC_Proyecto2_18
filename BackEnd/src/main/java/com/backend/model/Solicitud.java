@@ -18,5 +18,27 @@ public class Solicitud {
     public String getIde() {
         return ide;
     }
+    public void setIde(String ide) {
+        this.ide = ide;
+    }
 
+    public String getTipo() {
+        return tipo;
+    }
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getPaquete_a_enviar() {
+        return paquete_a_enviar;
+    }
+    public void setPaquete_a_enviar(String paquete_a_enviar) {
+        this.paquete_a_enviar = paquete_a_enviar;
+    }
+    public int getPrioridad() {
+        return prioridad;
+    }
+    public void setPrioridad(int prioridad) {
+        this.prioridad = prioridad;
+    }
 }
