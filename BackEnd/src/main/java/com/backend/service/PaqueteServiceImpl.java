@@ -19,4 +19,5 @@ public class PaqueteServiceImpl implements PaqueteService{
     public ArrayList<Paquete> obtenerPaquetes() {
         return Listas.listaPaquetes;
     }
+
 }

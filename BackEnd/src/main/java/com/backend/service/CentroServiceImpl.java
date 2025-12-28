@@ -5,9 +5,10 @@ import com.backend.lista.Listas;
 //importo mi modelo de clase centrodistribucion
 import com.backend.model.CentroDistribucion;
 
+import com.backend.model.Mensajero;
 import com.backend.model.Paquete;
 import org.springframework.stereotype.Service;
-import com.backend.lista.Listas;
+
 import java.util.ArrayList;
 // import com.backend.service.PaqueteService;
 
@@ -68,8 +69,15 @@ public class CentroServiceImpl implements  CentroService {
     //crear una lista y regresarla
 
     @Override
-    public CentroDistribucion listaMensajerosDelCentro(String id) {
-        return null;
+    public ArrayList<Mensajero> listarMensajerosCentro(String id_centro) {
+        ArrayList<Mensajero> listaMensajerosCentro = new ArrayList<>();
+
+        for (Mensajero mensajero : Listas.listaMensajeros) {
+            if (mensajero.getCentro_asig().equals(id_centro)) {
+                listaMensajerosCentro.add(mensajero);
+            }
+        }
+        return listaMensajerosCentro;
     }
 }
 

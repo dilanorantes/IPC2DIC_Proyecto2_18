@@ -10,7 +10,13 @@ public class Ruta {
         this.ide = ide;
         this.origen = origen;
         this.destino = destino;
-        this.distancia = Integer.parseInt(distancia);
+
+        //si se crea una ruta con una distancia en string le agrego distancia negativa para saber el error
+        try {
+            this.distancia = Integer.parseInt(distancia);
+        } catch (NumberFormatException e) {
+            this.distancia = -1;
+        }
     }
 
     public String getIde() {
@@ -27,4 +33,21 @@ public class Ruta {
     public int getDistancia() {
         return distancia;
     }
+
+
+    public void setIde(String ide) {
+        this.ide = ide;
+    }
+    public void setDestino(String destino) {
+        this.destino = destino;
+    }
+    public void setOrigen(String origen) {
+        this.origen = origen;
+    }
+
+    public void setDistancia(int distancia) {
+        this.distancia = distancia;
+    }
+
+
 }

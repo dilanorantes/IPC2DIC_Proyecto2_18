@@ -18,15 +18,19 @@ public class XmlController {
     public ResponseEntity<String> uploadXML(@RequestParam("file") MultipartFile file) {
         try {
 
+            if (!file.getOriginalFilename().endsWith(".xml")) {
+                return ResponseEntity.badRequest().body("solo necesitamos archivos xml ");
+            }
+
             InputStream inputStream = file.getInputStream();
 
             //creamos una instancia del lector y usamos su metodo de lectorxml
             lectorXml lector = new lectorXml();
             lector.leerXml(inputStream);
 
-            return ResponseEntity.ok("Archivo XML procesado correctamente");
+            return ResponseEntity.ok("archivo correcto");
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Error al procesar el archivo XML");
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 }

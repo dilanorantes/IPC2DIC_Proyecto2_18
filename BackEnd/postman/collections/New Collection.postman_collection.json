@@ -24,7 +24,7 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:8080/centros/CD001",
+          "raw": "http://localhost:8080/centros/C001",
           "protocol": "http",
           "host": [
             "localhost"
@@ -32,7 +32,7 @@
           "port": "8080",
           "path": [
             "centros",
-            "CD001"
+            "C001"
           ]
         }
       },
@@ -45,7 +45,17 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": ""
+          "raw": "http://localhost:8080/centros/C004/paquetes",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "centros",
+            "C004",
+            "paquetes"
+          ]
         }
       },
       "response": []
@@ -57,7 +67,15 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": ""
+          "raw": "http://localhost:8080/paquetes",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "paquetes"
+          ]
         }
       },
       "response": []
@@ -69,7 +87,15 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": ""
+          "raw": "http://localhost:8080/rutas",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "rutas"
+          ]
         }
       },
       "response": []
@@ -90,6 +116,67 @@
           "path": [
             "mensajeros"
           ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Crear rutanueva",
+      "id": "550e2229-3c99-4c1f-98d0-50f7e3913749",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"ide\": \"R001\",\r\n    \"origen\": \"C001\",\r\n    \"destino\": \"C002\",\r\n    \"distancia\": 205\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/rutas",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "rutas"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Editar Ruta",
+      "id": "2676f5a6-f6ac-4b00-b37c-3ad582068f8e",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/mensajeros",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "mensajeros"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "listaMensajeros_en_Centro",
+      "id": "fa43b5b7-9110-4224-808a-48dcc2fb7467",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
         }
       },
       "response": []

@@ -4,16 +4,13 @@ import com.backend.model.CentroDistribucion;
 import com.backend.model.Mensajero;
 import com.backend.model.Paquete;
 import com.backend.model.Ruta;
+
 import com.backend.service.*;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
+import org.w3c.dom.*;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.InputStream;
-import java.util.IllegalFormatCodePointException;
-import java.util.List;
 
 import org.xml.sax.SAXParseException;
 
@@ -26,6 +23,7 @@ public class lectorXml {
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document documento = builder.parse(archivoxml);
 
+            documento.getDocumentElement().normalize();
             // se obtiene raiz y se guarda en raiz
 
             Element raiz = documento.getDocumentElement();
