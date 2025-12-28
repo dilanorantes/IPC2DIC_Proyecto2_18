@@ -10,7 +10,7 @@ public class PaqueteServiceImpl implements PaqueteService{
     //final private ArrayList<Paquete> lista_paquetes = new ArrayList<>();
 
     public PaqueteServiceImpl() {
-        //aqui se crean todos los paquetes y se agregan a la lista
+        //constructor incial
     }
 
 

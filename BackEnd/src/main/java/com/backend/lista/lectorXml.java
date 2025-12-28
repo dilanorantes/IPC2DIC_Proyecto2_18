@@ -1,6 +1,8 @@
 package com.backend.lista;
 
 import com.backend.model.CentroDistribucion;
+import com.backend.model.Mensajero;
+import com.backend.model.Paquete;
 import com.backend.model.Ruta;
 import com.backend.service.*;
 import org.w3c.dom.Document;
@@ -11,6 +13,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.InputStream;
 import java.util.IllegalFormatCodePointException;
+import java.util.List;
 
 import org.xml.sax.SAXParseException;
 
@@ -34,6 +37,7 @@ public class lectorXml {
             //creo una instancia d centro service para utilizar sus metodos
             CentroService centroService = new CentroServiceImpl();
             RutaService rutaService = new RutaServiceImpl();
+
 
             // leo las etiquetas centro
             //si no hay me salgo para que no haya error
@@ -106,7 +110,13 @@ public class lectorXml {
                         System.out.println(" Distancia: " + distanciaRuta);
 
                         Ruta rutaactual= new Ruta(idRuta,origenRuta,destinoRuta,distanciaRuta);
-                        //SI no existe rutaen la listarutas se crea el objeto y lo guardo\
+                        //SI no existe rutasimilar o no tiene errores origendestino
+                        // en la listarutas se crea el objeto y lo guardo\
+                        if (!rutaService.existeRutaSimilar(rutaactual)) {
+                            System.out.println("ruta "+ rutaactual.getIde() + " agregada correctamente\n");
+                            Listas.listaRutas.add(rutaactual);
+                        }
+
 
                     }
                 } else {
@@ -124,11 +134,20 @@ public class lectorXml {
                 if (mensajero_actual.getLength() > 0) {
                     for (int i = 0; i < mensajero_actual.getLength(); i++) {
                         Element mensajero = (Element) mensajero_actual.item(i);
+                        String idMensajero = mensajero.getAttribute("id");
+                        String nombreMensajero = mensajero.getAttribute("nombre");
+                        String capacidadMensajero = mensajero.getAttribute("capacidad");
+                        String centroMensajero = mensajero.getAttribute("centro");
+
                         System.out.println("Mensajero:");
-                        System.out.println("  ID: " + mensajero.getAttribute("id"));
-                        System.out.println("  Nombre: " + mensajero.getAttribute("nombre"));
-                        System.out.println("  Capacidad: " + mensajero.getAttribute("capacidad"));
-                        System.out.println("  Centro: " + mensajero.getAttribute("centro"));
+                        System.out.println(" ID: " + idMensajero);
+                        System.out.println(" con nombre: " + nombreMensajero);
+                        System.out.println(" capacidad: " + capacidadMensajero);
+                        System.out.println(" centro asignado: " + centroMensajero);
+
+                        //aqui voy a poner  todas las validaciones para ver si se creael mensajero o no
+                        Listas.listaMensajeros.add(new Mensajero(idMensajero,nombreMensajero,capacidadMensajero,centroMensajero));
+                        System.out.println("mensajero agregado correctamente\n");
                     }
                 } else {
                     System.out.println("No hay mensajeros en el archivo xml");
@@ -145,13 +164,25 @@ public class lectorXml {
                 if (paquete_actual.getLength() > 0) {
                     for (int i = 0; i < paquete_actual.getLength(); i++) {
                         Element paquete = (Element) paquete_actual.item(i);
+
+                        String idPaquete = paquete.getAttribute("id");
+                        String clientePaquete = paquete.getAttribute("cliente");
+                        String pesoPaquete = paquete.getAttribute("peso");
+                        String destinoPaquete = paquete.getAttribute("destino");
+                        String estadoPaquete = paquete.getAttribute("estado");
+                        String centroActualPaquete = paquete.getAttribute("centroActual");
+
                         System.out.println("Paquete:");
-                        System.out.println("  ID: " + paquete.getAttribute("id"));
-                        System.out.println("  Cliente: " + paquete.getAttribute("cliente"));
-                        System.out.println("  Peso: " + paquete.getAttribute("peso"));
-                        System.out.println("  Destino: " + paquete.getAttribute("destino"));
-                        System.out.println("  Estado: " + paquete.getAttribute("estado"));
-                        System.out.println("  Centro Actual: " + paquete.getAttribute("centroActual"));
+                        System.out.println(" ID: " + idPaquete);
+                        System.out.println(" Cliente: " + clientePaquete);
+                        System.out.println(" Peso: " + pesoPaquete);
+                        System.out.println(" Destino: " + destinoPaquete);
+                        System.out.println(" Estado: " + estadoPaquete);
+                        System.out.println(" Centro Actual: " + centroActualPaquete);
+
+                        //Aqui voy a hacer las validaciones y si cumple guardo el paquete
+                        Listas.listaPaquetes.add(new Paquete(idPaquete,clientePaquete,pesoPaquete,destinoPaquete,estadoPaquete,centroActualPaquete));
+                        System.out.println("paquete agregado correctamente\n");
                     }
                 } else {
                     System.out.println("No hay paquetes en el archivo xml");

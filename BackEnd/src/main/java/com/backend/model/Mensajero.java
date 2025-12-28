@@ -23,5 +23,12 @@ public class Mensajero {
         return nombre;
     }
 
+    public int getCapacidad_envio() {
+        return capacidad_envio;
+    }
+    public String getCentro_asig() {
+        return centro_asig;
+    }
+
 
 }

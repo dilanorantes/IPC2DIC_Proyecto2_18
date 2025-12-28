@@ -8,4 +8,6 @@ public interface RutaService {
     ArrayList<Ruta> obtenerRutas();
     //metodos para encontrar la la ruta por su id
     Ruta obtenerRutaPorId(String id);
+
+    Boolean existeRutaSimilar(Ruta rutaEnvi);
 }
