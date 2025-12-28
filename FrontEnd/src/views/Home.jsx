@@ -1,55 +1,57 @@
-import { Link } from "react-router-dom";
-function Home   () {
-  //se crea la funcion de abrir un administrador de archivos
-  const abrirExplorador = () => {
-    const entrada = document.createElement('input');
-    entrada.type = 'file';
-    //solo aceptamos archivo xml, cuando se abre la ventana para elegir pide .xml
-    entrada.accept = '.xml';
-    
+import { useState } from "react";
+
+function Home() {
+  //mensaje a mostrar lo puse nulo para que no se muestre desde el principio
+  //solo cuando le demos click al boton de cargar archivo y haya error o no
+  const [mensajeMostrar, setMensaje] = useState(null);
+
+  const abrirExploradorWindows = () => {
+    const entrada = document.createElement("input");
+    entrada.type = "file";
+    entrada.accept = ".xml";
     entrada.onchange = async (event) => {
-      const file = event.target.files[0];
-      if (file) {
+      const documento = event.target.files[0];
+
+      //si ya se seleccionó intenta hacer un post al bakcend
+      if (documento) {
         try {
           const archivo = new FormData();
-          archivo.append("file", file);
-          //hago el post al backend
-          const response = await fetch('http://localhost:8080/api/importar', {
-            method: 'POST',
+          archivo.append("file", documento);
+          const respuestaBackend = await fetch("http://localhost:8080/api/importar", {
+            method: "POST",
             body: archivo,
           });
-          //dependiendo de la respuesta del endpoint toma una decision
-          if (response.ok) {
-            console.log("el archivo se leyó bien");
+          if (respuestaBackend.ok) {
+            setMensaje("el archivo está correcto y se leyó bien");
           } else {
-            console.error("hay un errror al enviarlo");
+            setMensaje("se tiene un error al leer el archvo, no se cargó al sistema");
           }
         } catch (error) {
-          console.error("error al subirlo", error);
+          setMensaje("error inesperado");
         }
       } else {
-        alert("solo selecciona archivos .xml");
+        alert("error inesperado num2");
       }
     };
     entrada.click();
   };
 
   return (
-      <div>
-        <h1>Cargar Archivo</h1>
-
-        <button onClick={abrirExplorador}>
-          Cargar archivo XML
-        </button> 
-
-        <input
-        id="archivo"
-        type="file"
-        accept=".xml"
-        hidden/>
-
-      </div>
-  );    
+    <div>
+      <h1>Pagina de carga con un archivo xml </h1>
+      <button onClick={abrirExploradorWindows}>Haz click para cargar tu archivo , tiene que ser xml</button>
+      {mensajeMostrar && (
+      <span
+        style={{
+          color: mensajeMostrar.includes("error") ? "red" : "green"
+        }}
+      >
+        {mensajeMostrar}
+      </span>
+)}
+    </div>
+  );
 }
+
 
 export default Home;

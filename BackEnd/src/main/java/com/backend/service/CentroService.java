@@ -1,5 +1,6 @@
 package com.backend.service;
 import com.backend.model.CentroDistribucion;
+import com.backend.model.Mensajero;
 import com.backend.model.Paquete;
 
 import java.util.ArrayList;
@@ -16,6 +17,6 @@ public interface CentroService {
 
     ArrayList<Paquete> listaPaquetesDelCentro(String id);
 
-    CentroDistribucion listaMensajerosDelCentro(String id);
+    ArrayList<Mensajero> listarMensajerosCentro(String id_centro);
 }
 
