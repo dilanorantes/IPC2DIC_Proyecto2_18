@@ -10,6 +10,8 @@ export default function Centro() {
   const [idBuscar, setIdBuscar] = useState('')
 
   const [paquetes, setPaquetes] = useState({})
+  const [mensajeros, setMensajeros] = useState({})
+
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
 
@@ -68,6 +70,20 @@ export default function Centro() {
     }
   }
 
+  const obtenerMensajeros = async (idCentro) => {
+    try {
+      const response = await fetch(`http://localhost:8080/centros/${idCentro}/mensajeros`)
+      const data = await response.json()
+
+      setMensajeros(prev => ({
+        ...prev,
+        [idCentro]: data
+      }))
+    } catch (err) {
+      console.error('Error al cargar mensajeros')
+    }
+  }
+
   return (
     <div className="container">
       <h2>Gestión de Centros</h2>
@@ -117,12 +133,16 @@ export default function Centro() {
 
           {centros.map((centro) => (
             <div key={centro.idcentro}>
-              <strong>{centro.idcentro}</strong> – {centro.nombre} ({centro.ciudad}) ({centro.capacidad_total})
+              <strong>{centro.idcentro}</strong> – {centro.nombre} ({centro.ciudad}) <strong>Capacidad:</strong> ({centro.capacidad_total})
 
                 {/*boton para obtener los paqeutes de cada centro*/}
               <div>
                 <button onClick={() => obtenerPaquetes(centro.idcentro)}>
                   Ver Paquetes
+                </button>
+
+                <button onClick={() => obtenerMensajeros(centro.idcentro)}>
+                  Ver Mensajeros
                 </button>
               </div>
 
@@ -135,8 +155,23 @@ export default function Centro() {
                   ) : (
                     paquetes[centro.idcentro].map((p, i) => (
                       <p key={i}>
-                        <strong>• {p.ide}</strong>
+                      <strong>ID: {p.ide}</strong> – {p.cliente} – <strong>peso:</strong> {p.peso} 
                       </p>
+                    ))
+                  )}
+                </div>
+              )}
+              {/* muestra los mensajero de cada centro  */}
+              {mensajeros[centro.idcentro] && (
+                <div>
+                  <p><strong>Mensajeros:</strong></p>
+                  {mensajeros[centro.idcentro].length === 0 ? (
+                    <p>No hay mensajeros</p>
+                  ) : (
+                    mensajeros[centro.idcentro].map((m, i) => (
+                      <div key={i}>
+                        <strong>ID: {m.ide}</strong> – {m.nombre} – <strong>Capacidad:</strong> {m.capacidad_envio} {m.estado} 
+                      </div>
                     ))
                   )}
                 </div>
