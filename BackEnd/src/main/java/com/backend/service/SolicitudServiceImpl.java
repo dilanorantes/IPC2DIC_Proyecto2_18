@@ -8,6 +8,7 @@ import com.backend.model.Solicitud;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.PriorityQueue;
 
 @Service
@@ -63,6 +64,35 @@ public class SolicitudServiceImpl implements SolicitudService {
 
         }return null;
 
+    }
+    @Override
+    public boolean eliminarSolicitud(String id){
+        Iterator<Solicitud> nodo= ColaPriori.colaPriori.iterator();
+        while (nodo.hasNext()) {
+            Solicitud solicitud =nodo.next();
+            //como en las estructuras de colas en el primer proyecto
+            //reviso los nodos y sus apuntadores hasta encontrar uno por id
+            if (solicitud.getIde().equals(id)) {
+                //si lo encuentro lo elimino
+                nodo.remove();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public Solicitud obtenerSolicitudPorId(String id) {
+        Iterator<Solicitud> nodo= ColaPriori.colaPriori.iterator();
+        while (nodo.hasNext()) {
+            Solicitud solicitud =nodo.next();
+            //como en las estructuras de colas en el primer proyecto
+            //reviso los nodos y sus apuntadores hasta encontrar uno por id
+            if (solicitud.getIde().equals(id)) {
+                return solicitud;
+            }
+        }
+        return null;
     }
 
 

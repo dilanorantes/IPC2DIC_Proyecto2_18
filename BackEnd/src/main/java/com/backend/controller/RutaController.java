@@ -61,5 +61,14 @@ public class RutaController {
         return ResponseEntity.ok(rutaNueva);
     }
 
+    //Con un DELETE Y  http://localhost:8080/rutas/{ID}
+    @DeleteMapping("{id}")
+    public ResponseEntity<?> eliminarRuta(@PathVariable String id) {
+        if (rutaService.obtenerRutaPorId(id) == null) {
+            return ResponseEntity.badRequest().body("no se eliminó por que no existe esa ruta ");
+        }
+        return  ResponseEntity.ok(rutaService.eliminarRuta(id));
+    }
+
 
 }

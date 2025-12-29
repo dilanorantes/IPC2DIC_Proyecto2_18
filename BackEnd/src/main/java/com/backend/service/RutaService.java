@@ -14,6 +14,11 @@ public interface RutaService {
 
     Ruta editarRuta(String id, Ruta rutaRecibida);
 
+    //codigo para eliminar una ruta de la lista retorna true si se hizo correctamente
+    boolean eliminarRuta(String id);
+
+
+
     Boolean existeRutaSimilar(Ruta rutaEnvi);
 
 

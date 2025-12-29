@@ -24,6 +24,9 @@ public class SolicitudController {
     @PostMapping ("/procesar")
     public ResponseEntity<?> procesar1Solicitud(){
         Solicitud solicitud = ColaPriori.colaPriori.peek();
+        if (ColaPriori.colaPriori.isEmpty()) {
+            return ResponseEntity.badRequest().body("Ya no hay mas solicitudes por procesar");
+        }
         if (solicitudService.SepuedeProcesarSoli(solicitud)){
             solicitudService.procesar1Solicitud();
 
@@ -33,5 +36,16 @@ public class SolicitudController {
             return ResponseEntity.badRequest().body("La solicitud no se pudo procesar");
         }
     }
+
+    //Con un DELETE Y http://localhost:8080/solicitudes/{ID}
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> eliminarSolicitudporId(@PathVariable String id) {
+        if (solicitudService.obtenerSolicitudPorId(id) == null) {
+            return ResponseEntity.badRequest().body("No se eliminó porque no existe esa solicitud");
+        }
+        return ResponseEntity.ok(solicitudService.eliminarSolicitud(id));
+    }
+
+
 
 }

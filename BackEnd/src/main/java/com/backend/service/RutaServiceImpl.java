@@ -59,6 +59,19 @@ public class RutaServiceImpl implements RutaService {
         return null;
     }
 
+    //codigo para eliminar una ruta de la lista retorna true si se hizo correctamente
+    @Override
+    public boolean eliminarRuta(String id) {
+        for (int i = 0; i < Listas.listaRutas.size(); i++) {
+            if (Listas.listaRutas.get(i).getIde().equals(id)) {
+                Listas.listaRutas.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
+
+
     @Override
     public Boolean existeRutaSimilar(Ruta rutaEnvi) {
             Ruta ruta = obtenerRutaPorId(rutaEnvi.getIde());

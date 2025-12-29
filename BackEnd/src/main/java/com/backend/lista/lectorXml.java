@@ -180,6 +180,13 @@ public class lectorXml {
                         System.out.println(" Centro Actual: " + centroActualPaquete);
 
                         //Aqui voy a hacer las validaciones y si cumple guardo el paquete
+
+                        for (CentroDistribucion centro : Listas.listaCentros) {
+                            if (centro.getIdcentro().equals(centroActualPaquete)) {
+                                centro.setCapacidad_libre(centro.getCapacidad_libre()-1);
+                                break;
+                            }
+                        }
                         Listas.listaPaquetes.add(new Paquete(idPaquete,clientePaquete,pesoPaquete,destinoPaquete,estadoPaquete,centroActualPaquete));
                         System.out.println("paquete agregado correctamente\n");
                     }

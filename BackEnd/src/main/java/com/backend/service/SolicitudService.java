@@ -9,6 +9,9 @@ public interface SolicitudService {
 
 
     Solicitud  procesar1Solicitud();
+    boolean eliminarSolicitud(String id);
+
+    Solicitud obtenerSolicitudPorId(String id);
 
     Boolean SepuedeProcesarSoli(Solicitud solicitud);
 }
