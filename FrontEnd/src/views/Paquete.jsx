@@ -89,8 +89,9 @@ export default function Paquete() {
           <p><strong>ID:</strong> {paqueteSeleccionado.ide}</p>
           <p><strong>Cliente:</strong> {paqueteSeleccionado.cliente}</p>
           <p><strong>Peso:</strong> {paqueteSeleccionado.peso}</p>
-          <p><strong>Centro:</strong> {paqueteSeleccionado.centro_actual}</p>
-          <p><strong>Estado:</strong> {paqueteSeleccionado.estado}</p>
+          <p><strong>Centro en el que se encuentra:</strong> {paqueteSeleccionado.centro_actual}</p>
+          <p><strong>Estado del paquete:</strong> {paqueteSeleccionado.estado}</p>
+          <p><strong>Centro al que hay que mandar el paquete:</strong> {paqueteSeleccionado.destino}</p>
 
           <button onClick={() => setPaqueteSeleccionado(null)}>
             Volver
