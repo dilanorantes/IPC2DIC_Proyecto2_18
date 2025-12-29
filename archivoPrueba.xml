@@ -89,6 +89,9 @@
  </paquetes>
  <solicitudes>
  <solicitud id="S001" tipo="EnvioNormal" paquete="P001" prioridad="7"/>
+ <solicitud id="S002" tipo="EnvioNormal" paquete="P002" prioridad="8"/>
+ <solicitud id="S003" tipo="EnvioNormal" paquete="P003" prioridad="6"/>
+ <solicitud id="S004" tipo="EnvioNormal" paquete="P004" prioridad="1"/>
  </solicitudes>
  </configuracion>
 </logitrack>

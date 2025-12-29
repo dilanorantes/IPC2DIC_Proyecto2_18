@@ -46,4 +46,24 @@ public class Paquete {
         return centro_actual;
     }
 
+    public void setIde(String ide) {
+        this.ide = ide;
+    }
+    public void setCliente(String cliente) {
+        this.cliente = cliente;
+    }
+    public void setPeso(int peso) {
+        this.peso = peso;
+    }
+    public void setDestino(String destino) {
+        this.destino = destino;
+    }
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    public void setCentro_actual(String centro_actual) {
+        this.centro_actual = centro_actual;
+    }
+
+
 }

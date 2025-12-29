@@ -20,4 +20,13 @@ public class PaqueteServiceImpl implements PaqueteService{
         return Listas.listaPaquetes;
     }
 
+    @Override
+    public Paquete obtenerPaquetePorId(String id) {
+        for (Paquete paquete : Listas.listaPaquetes) {
+            if (paquete.getIde().equals(id)) {
+                return paquete;
+            }
+        }
+        return null;
+    }
 }

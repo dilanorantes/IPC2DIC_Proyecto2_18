@@ -4,6 +4,7 @@ import com.backend.model.CentroDistribucion;
 import com.backend.model.Mensajero;
 import com.backend.model.Paquete;
 import com.backend.model.Ruta;
+import com.backend.model.Solicitud;
 
 import com.backend.service.*;
 import org.w3c.dom.*;
@@ -197,11 +198,18 @@ public class lectorXml {
                 if (solicitud_actual.getLength() > 0) {
                     for (int i = 0; i < solicitud_actual.getLength(); i++) {
                         Element solicitud = (Element) solicitud_actual.item(i);
+
+                        String id =  solicitud.getAttribute("id");
+                        String tipo = (String) solicitud.getAttribute("tipo");
+                        String paqueteAenviar = (String) solicitud.getAttribute("paquete");
+                        String prioridad =  solicitud.getAttribute("prioridad");
+
+                        ColaPriori.colaPriori.add((new Solicitud(id, tipo, paqueteAenviar, prioridad)));
                         System.out.println("Solicitud:");
-                        System.out.println("  ID: " + solicitud.getAttribute("id"));
-                        System.out.println("  Tipo: " + solicitud.getAttribute("tipo"));
-                        System.out.println("  Paquete: " + solicitud.getAttribute("paquete"));
-                        System.out.println("  Prioridad: " + solicitud.getAttribute("prioridad"));
+                        System.out.println(" ID: " + id);
+                        System.out.println(" Tipo: " + tipo);
+                        System.out.println(" Paquete a enviar: " + paqueteAenviar);
+                        System.out.println(" Prioridad: " + prioridad);
                     }
                 } else {
                     System.out.println("No hay solicitudes en el archivo xml");

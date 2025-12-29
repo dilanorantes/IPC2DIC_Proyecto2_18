@@ -18,4 +18,6 @@ public interface RutaService {
 
 
     Boolean existeRutaOrigenDestino(Ruta rutaEnvi);
+
+    Ruta EncontrarPorSuRuta(String origen, String Destino);
 }

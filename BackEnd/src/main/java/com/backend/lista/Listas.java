@@ -7,6 +7,7 @@ import com.backend.model.Mensajero;
 import com.backend.model.Solicitud;
 
 import java.util.ArrayList;
+import java.util.PriorityQueue;
 
 public class Listas {
     public static ArrayList<CentroDistribucion> listaCentros = new ArrayList<>();
@@ -14,5 +15,7 @@ public class Listas {
     public static ArrayList<Ruta> listaRutas = new ArrayList<>();
     public static ArrayList<Mensajero> listaMensajeros = new ArrayList<>();
     //tendria que usar otra lista para solicitudes
-    public static ArrayList<Solicitud> listaSolicitudes = new ArrayList<>();
+
+
+
 }

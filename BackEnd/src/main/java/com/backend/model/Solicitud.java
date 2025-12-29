@@ -15,6 +15,7 @@ public class Solicitud {
         this.estado_solicitud = "PENDIENTE";
     }
 
+    //getters y setters
     public String getIde() {
         return ide;
     }
@@ -41,4 +42,8 @@ public class Solicitud {
     public void setPrioridad(int prioridad) {
         this.prioridad = prioridad;
     }
+    public String getEstado_solicitud() {
+        return estado_solicitud;
+    }
+    public void setEstado_solicitud(String estado_solicitud) {}
 }

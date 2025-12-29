@@ -180,6 +180,47 @@
         }
       },
       "response": []
+    },
+    {
+      "name": "listar solicitudes",
+      "id": "afdcf575-d8f8-494c-895e-e49e7b860522",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/solicitudes",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "solicitudes"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "procesar1soli",
+      "id": "45935676-c182-45cd-acc3-ee780c523d66",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/solicitudes/procesar",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "solicitudes",
+            "procesar"
+          ]
+        }
+      },
+      "response": []
     }
   ]
 }

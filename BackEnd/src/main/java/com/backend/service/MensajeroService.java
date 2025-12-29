@@ -5,5 +5,6 @@ import java.util.ArrayList;
 
 public interface MensajeroService  {
     ArrayList<Mensajero> obtenerMensajeros();
-    
+
+    Mensajero obtenerMensajeroPorId(String id);
 }

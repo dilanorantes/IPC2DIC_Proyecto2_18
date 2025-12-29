@@ -118,7 +118,7 @@ export default function Centro() {
           <p>ID: {centroSeleccionado.idcentro}</p>
           <p>Nombre: {centroSeleccionado.nombre}</p>
           <p>Ciudad: {centroSeleccionado.ciudad}</p>
-          <p>Capacidad: {centroSeleccionado.capacidad_total}</p>
+          <p>Capacidad libre: {centroSeleccionado.capacidad_libre} de {centroSeleccionado.capacidad_total}</p>
 
           <button onClick={() => setCentroSeleccionado(null)}>
             Volver

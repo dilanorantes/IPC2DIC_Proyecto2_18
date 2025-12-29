@@ -105,4 +105,17 @@ public class RutaServiceImpl implements RutaService {
         return false;
     }
 
+    @Override
+    public Ruta EncontrarPorSuRuta(String origen, String destino){
+            //leo todas las rutas si alguna tiene el mismo origen y el mismo destino regresa la ruta
+            for (Ruta ruta_actual : Listas.listaRutas) {
+                if (origen.equals(ruta_actual.getOrigen()) && destino.equals(ruta_actual.getDestino())) {
+                    return ruta_actual;
+                }
+            }
+            //sino quiere decir que son totalmente diferentes y regresa  un null porque no hay ruta
+            return null;
+    }
+
+
 }

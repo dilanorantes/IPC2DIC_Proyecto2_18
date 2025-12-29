@@ -15,4 +15,14 @@ public class MensajeroServiceImpl implements MensajeroService {
     public ArrayList<Mensajero> obtenerMensajeros() {
         return Listas.listaMensajeros;
     }
+
+    @Override
+    public Mensajero obtenerMensajeroPorId(String id) {
+        for (Mensajero mensajero : Listas.listaMensajeros) {
+            if (mensajero.getIde().equals(id)) {
+                return mensajero;
+            }
+        }
+        return null;
+    }
 }

@@ -31,4 +31,25 @@ public class CentroDistribucion {
     public int getCapacidad_total() {
         return capacidad_total;
     }
+
+    public int getCapacidad_libre() {
+        return capacidad_libre;
+    }
+
+    public void setIdcentro(String idcentro) {
+        this.idcentro = idcentro;
+
+    }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
+    }
+    public void setCapacidad_total(int capacidad_total) {
+        this.capacidad_total = capacidad_total;
+    }
+    public void setCapacidad_libre(int capacidad_libre) {
+        this.capacidad_libre = capacidad_libre;
+    }
 }

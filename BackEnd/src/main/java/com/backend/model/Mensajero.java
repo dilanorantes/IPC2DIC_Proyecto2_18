@@ -29,6 +29,27 @@ public class Mensajero {
     public String getCentro_asig() {
         return centro_asig;
     }
+    public String getEstado() {
+        return estado;
+    }
+
+    //setters
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    public void setIde(String ide) {
+        this.ide = ide;
+    }
+    public void setNombre(String nombre) {
+
+    }
+    public void setCapacidad_envio(int capacidad_envio) {
+        this.capacidad_envio = capacidad_envio;
+
+    }
+    public void setCentro_asig(String centro_asig) {
+        this.centro_asig = centro_asig;
+    }
 
 
 }
